@@ -8,6 +8,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        // setContentView(R.layout.activity_main);
+
+        prepareMainWindow();
+    }
+
+    private void prepareMainWindow() {
+        /**
+         * TODO: move current option to settings
+         */
+        // requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 }
