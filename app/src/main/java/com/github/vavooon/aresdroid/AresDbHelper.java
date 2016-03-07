@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
-import android.util.Log;
 
 import com.github.vavooon.aresdroid.entity.AresValidLanguage;
 
@@ -21,7 +20,7 @@ public class AresDbHelper extends SQLiteOpenHelper {
     public AresDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
-        Log.d(LOG_TAG, "constructor");
+        AresLog.d(LOG_TAG, "constructor");
     }
 
     public static final class DbVersion implements BaseColumns {
@@ -36,7 +35,7 @@ public class AresDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        Log.d(LOG_TAG, "onCreate");
+        AresLog.d(LOG_TAG, "onCreate");
 
         this.createDbVersionTable(sqLiteDatabase);
         this.addDbVersion(sqLiteDatabase);
@@ -50,15 +49,15 @@ public class AresDbHelper extends SQLiteOpenHelper {
                 DbVersion.COLUMN_ID + " INTEGER PRIMARY KEY, " +
                 DbVersion.COLUMN_NUMBER + " INTEGER NOT NULL " +
                 ");";
-        Log.d(LOG_TAG, "SQL_CREATE_DB_VERSION_TABLE: " + SQL_CREATE_DB_VERSION_TABLE);
+        AresLog.d(LOG_TAG, "SQL_CREATE_DB_VERSION_TABLE: " + SQL_CREATE_DB_VERSION_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_DB_VERSION_TABLE);
     }
 
     public void dropDbVersionTable(SQLiteDatabase sqLiteDatabase) {
-        Log.d(LOG_TAG, "dropDbVersionTable");
+        AresLog.d(LOG_TAG, "dropDbVersionTable");
 
         final String SQL_DROP_DB_VERSION_TABLE = "DROP TABLE IF EXISTS " + DbVersion.TABLE_NAME;
-        Log.d(LOG_TAG, "SQL_DROP_DB_VERSION_TABLE: " + SQL_DROP_DB_VERSION_TABLE);
+        AresLog.d(LOG_TAG, "SQL_DROP_DB_VERSION_TABLE: " + SQL_DROP_DB_VERSION_TABLE);
         sqLiteDatabase.execSQL(SQL_DROP_DB_VERSION_TABLE);
     }
 
@@ -67,7 +66,7 @@ public class AresDbHelper extends SQLiteOpenHelper {
                 DbVersion.COLUMN_ID + ", " +
                 DbVersion.COLUMN_NUMBER + ") " +
                 "VALUES (1, ?);";
-        Log.d(LOG_TAG, "SQL_INSERT_DB_VERSION_EN: " + SQL_INSERT_DB_VERSION_EN);
+        AresLog.d(LOG_TAG, "SQL_INSERT_DB_VERSION_EN: " + SQL_INSERT_DB_VERSION_EN);
 
         sqLiteDatabase.execSQL(SQL_INSERT_DB_VERSION_EN, new String[] {
                 Integer.toString(DATABASE_VERSION)
@@ -76,7 +75,7 @@ public class AresDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        Log.d(LOG_TAG, "onUpgrade");
+        AresLog.d(LOG_TAG, "onUpgrade");
 
         // TODO: alter everything instead of recreation
         AresValidLanguage.dropValidLanguageTable(sqLiteDatabase);
@@ -86,7 +85,7 @@ public class AresDbHelper extends SQLiteOpenHelper {
     }
 
     public int getDbVersion() {
-        Log.d(LOG_TAG, "getDbVersion");
+        AresLog.d(LOG_TAG, "getDbVersion");
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + DbVersion.TABLE_NAME, null);
@@ -106,7 +105,7 @@ public class AresDbHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<AresValidLanguage> getValidLanguages() {
-        Log.d(LOG_TAG, "getValidLanguages");
+        AresLog.d(LOG_TAG, "getValidLanguages");
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + AresValidLanguage.db.TABLE_NAME, null);

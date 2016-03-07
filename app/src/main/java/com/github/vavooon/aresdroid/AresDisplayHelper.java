@@ -2,7 +2,6 @@ package com.github.vavooon.aresdroid;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -20,7 +19,7 @@ public class AresDisplayHelper {
     public double sizeInches;
 
     public AresDisplayHelper(Context context) {
-        Log.d(LOG_TAG, "constructor");
+        AresLog.d(LOG_TAG, "constructor");
 
         this.getInfo(context);
     }

@@ -1,15 +1,14 @@
 package com.github.vavooon.aresdroid.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.github.vavooon.aresdroid.AresHelper;
+import com.github.vavooon.aresdroid.AresLog;
 import com.github.vavooon.aresdroid.entity.AresValidLanguage;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class AresInfoActivity extends AppCompatActivity {
     }
 
     private void prepareMainWindow() {
-        Log.d(LOG_TAG, "prepareMainWindow");
+        AresLog.d(LOG_TAG, "prepareMainWindow");
 
         /**
          * TODO: move current option to settings
@@ -96,7 +95,7 @@ public class AresInfoActivity extends AppCompatActivity {
         }
 
         this.showDisplayInfo(innerTable, "(default) ");
-        
+
         if (aresHelper.currentSdk >= 17) {
             aresHelper.display.getInfo(this, true);
             this.showDisplayInfo(innerTable, "(real) ");
@@ -105,9 +104,9 @@ public class AresInfoActivity extends AppCompatActivity {
         // set main view
         setContentView(verticalScroll);
     }
-    
+
     private void showDisplayInfo(TableLayout parentLayout, String prefix) {
-        
+
         // Display width in pixels
         TextView staticLabel = new TextView(this);
         staticLabel.setText(prefix + "Display width, pixels:");

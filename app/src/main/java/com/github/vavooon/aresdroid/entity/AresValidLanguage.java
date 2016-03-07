@@ -2,7 +2,8 @@ package com.github.vavooon.aresdroid.entity;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
-import android.util.Log;
+
+import com.github.vavooon.aresdroid.AresLog;
 
 public class AresValidLanguage {
     private static final String LOG_TAG = AresValidLanguage.class.getSimpleName();
@@ -35,15 +36,15 @@ public class AresValidLanguage {
                 db.COLUMN_CODE + " TEXT UNIQUE NOT NULL, " +
                 db.COLUMN_LABEL + " TEXT UNIQUE NOT NULL " +
                 ");";
-        Log.d(LOG_TAG, "SQL_CREATE_VALID_LANGUAGE_TABLE: " + SQL_CREATE_VALID_LANGUAGE_TABLE);
+        AresLog.d(LOG_TAG, "SQL_CREATE_VALID_LANGUAGE_TABLE: " + SQL_CREATE_VALID_LANGUAGE_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_VALID_LANGUAGE_TABLE);
     }
 
     public static void dropValidLanguageTable(SQLiteDatabase sqLiteDatabase) {
-        Log.d(LOG_TAG, "dropValidLanguageTable");
+        AresLog.d(LOG_TAG, "dropValidLanguageTable");
 
         final String SQL_DROP_VALID_LANGUAGE_TABLE = "DROP TABLE IF EXISTS " + db.TABLE_NAME;
-        Log.d(LOG_TAG, "SQL_DROP_VALID_LANGUAGE_TABLE: " + SQL_DROP_VALID_LANGUAGE_TABLE);
+        AresLog.d(LOG_TAG, "SQL_DROP_VALID_LANGUAGE_TABLE: " + SQL_DROP_VALID_LANGUAGE_TABLE);
         sqLiteDatabase.execSQL(SQL_DROP_VALID_LANGUAGE_TABLE);
     }
 
@@ -53,21 +54,21 @@ public class AresValidLanguage {
                 db.COLUMN_CODE + ", " +
                 db.COLUMN_LABEL + ") " +
                 "VALUES (1, 'en', 'English');";
-        Log.d(LOG_TAG, "SQL_INSERT_VALID_LANGUAGE_EN: " + SQL_INSERT_VALID_LANGUAGE_EN);
+        AresLog.d(LOG_TAG, "SQL_INSERT_VALID_LANGUAGE_EN: " + SQL_INSERT_VALID_LANGUAGE_EN);
 
         final String SQL_INSERT_VALID_LANGUAGE_RU = "INSERT INTO " + db.TABLE_NAME + " (" +
                 db.COLUMN_ID + ", " +
                 db.COLUMN_CODE + ", " +
                 db.COLUMN_LABEL + ") " +
                 "VALUES (2, 'ru', 'Русский');";
-        Log.d(LOG_TAG, "SQL_INSERT_VALID_LANGUAGE_RU: " + SQL_INSERT_VALID_LANGUAGE_RU);
+        AresLog.d(LOG_TAG, "SQL_INSERT_VALID_LANGUAGE_RU: " + SQL_INSERT_VALID_LANGUAGE_RU);
 
         final String SQL_INSERT_VALID_LANGUAGE_UK = "INSERT INTO " + db.TABLE_NAME + " (" +
                 db.COLUMN_ID + ", " +
                 db.COLUMN_CODE + ", " +
                 db.COLUMN_LABEL + ") " +
                 "VALUES (3, 'uk', 'Українська');";
-        Log.d(LOG_TAG, "SQL_INSERT_VALID_LANGUAGE_UK: " + SQL_INSERT_VALID_LANGUAGE_UK);
+        AresLog.d(LOG_TAG, "SQL_INSERT_VALID_LANGUAGE_UK: " + SQL_INSERT_VALID_LANGUAGE_UK);
 
         sqLiteDatabase.execSQL(SQL_INSERT_VALID_LANGUAGE_EN);
         sqLiteDatabase.execSQL(SQL_INSERT_VALID_LANGUAGE_RU);
